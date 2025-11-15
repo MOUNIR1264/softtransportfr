@@ -11,31 +11,31 @@ const services = [
   {
     icon: Building2,
     title: "Déménagement Professionnel",
-    description: "Déménagement de bureaux et locaux d'entreprise. Minimisation des interruptions d'activité et installation rapide.",
+    description: "Déménagement professionnel de bureaux, locaux commerciaux et espaces d'entreprise en Île-de-France. Nous planifions votre déménagement pour minimiser les interruptions d'activité, avec intervention possible en soirée ou weekend. Installation rapide et méthodique de votre mobilier professionnel, matériel informatique et archives. Discrétion et efficacité garanties.",
     keywords: "déménagement professionnel, local d'entreprise"
   },
   {
     icon: Truck,
     title: "Monte-Meuble Paris",
-    description: "Service de monte-meuble professionnel pour accès difficiles. Matériel moderne et équipe expérimentée.",
+    description: "Service de monte-meuble professionnel à Paris pour les accès difficiles et étages élevés sans ascenseur. Matériel moderne et sécurisé (monte-charge extérieur) permettant de transporter meubles volumineux, pianos, coffres-forts en toute sécurité. Équipe expérimentée et assurée pour toutes hauteurs d'immeubles parisiens.",
     keywords: "monte-meuble paris, matériel de déménagement"
   },
   {
     icon: Package,
     title: "Garde-Meubles Paris",
-    description: "Solutions de stockage sécurisées courte et longue durée. Garde-meubles surveillés 24h/24 en Île-de-France.",
+    description: "Solutions de garde-meubles et stockage sécurisé à Paris et Île-de-France pour courte, moyenne et longue durée. Boxes individuels surveillés 24h/24 avec système de sécurité moderne, contrôle d'accès et vidéosurveillance. Espaces propres, secs et adaptés à tous types de biens. Tarifs dégressifs selon la durée.",
     keywords: "garde-meubles paris, stockage sécurisé"
   },
   {
     icon: Shield,
     title: "Emballage Professionnel",
-    description: "Protection et emballage de vos objets fragiles avec du matériel adapté. Cartons, housses et film protecteur.",
+    description: "Service d'emballage professionnel et protection sur-mesure de vos biens fragiles et précieux. Nous fournissons cartons renforcés de qualité, housses de protection, papier bulle, film étirable et matériel spécialisé. Emballage soigné de vaisselle, objets d'art, électronique et meubles délicats par nos experts.",
     keywords: "emballage protection objets fragiles, matériel déménagement"
   },
   {
     icon: Clock,
     title: "Déménagement Express",
-    description: "Service de déménagement rapide pour urgences. Disponibilité sous 24-48h partout en Île-de-France.",
+    description: "Service de déménagement express et urgent à Paris pour situations imprévues. Intervention rapide sous 24 à 48 heures maximum partout en Île-de-France. Équipe réactive et véhicules disponibles immédiatement pour déménagements urgents, mutations professionnelles soudaines ou situations d'urgence. Prestation complète même en express.",
     keywords: "déménagement express, prestation de déménagement"
   }
 ];

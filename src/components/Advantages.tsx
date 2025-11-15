@@ -4,22 +4,22 @@ const advantages = [
   {
     icon: Award,
     title: "15 ans d'expérience",
-    description: "Des déménageurs professionnels formés et expérimentés"
+    description: "Plus de 15 ans d'expertise dans le déménagement à Paris et Île-de-France. Des déménageurs professionnels certifiés, formés aux techniques modernes de manutention et expérimentés dans tous types de déménagements résidentiels et professionnels. Savoir-faire reconnu et milliers de clients satisfaits."
   },
   {
     icon: Shield,
     title: "Transport sécurisé",
-    description: "Assurance tous risques incluse sur tous nos déménagements"
+    description: "Transport ultra-sécurisé de vos biens avec assurance tous risques incluse dans nos prestations. Véhicules modernes équipés, protection optimale des meubles et objets fragiles. Garantie complète contre la casse, les dommages et les pertes pendant toute la durée du déménagement. Votre tranquillité d'esprit est notre priorité."
   },
   {
     icon: Euro,
     title: "Devis gratuit",
-    description: "Estimation précise et transparente sans engagement"
+    description: "Devis de déménagement 100% gratuit et sans engagement sous 24h. Estimation précise et détaillée après évaluation de votre volume à déménager. Tarifs transparents et compétitifs, aucun frais caché. Possibilité de visite gratuite à domicile pour un chiffrage exact. Conseils personnalisés inclus."
   },
   {
     icon: Users,
     title: "Équipe dédiée",
-    description: "Personnel qualifié et matériel de déménagement professionnel"
+    description: "Équipe dédiée et spécialisée assignée à votre déménagement du début à la fin. Personnel qualifié, courtois et respectueux de vos biens. Matériel professionnel de dernière génération : camions adaptés, monte-meubles, diables, sangles, couvertures de protection. Coordination parfaite pour un déménagement sans stress."
   }
 ];
 
