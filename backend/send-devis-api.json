@@ -1,0 +1,348 @@
+{
+	"info": {
+		"_postman_id": "a1b2c3d4-e5f6-7g8h-9i0j-k1l2m3n4o5p6",
+		"name": "Soft Transports API",
+		"description": "API REST pour le formulaire de demande de devis",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Send Devis",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"Jean\",\n    \"lastName\": \"Dupont\",\n    \"email\": \"jean.dupont@example.com\",\n    \"phone\": \"06 12 34 56 78\",\n    \"departureCity\": \"Paris 15ème\",\n    \"arrivalCity\": \"Lyon 2ème\",\n    \"movingDate\": \"2025-12-15\",\n    \"floor\": \"3ème étage\",\n    \"needsLift\": true,\n    \"message\": \"Besoin d'un devis pour un appartement T3 environ 60m²\",\n    \"recaptchaResponse\": \"03AGdBq27test_token_example\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:80/backend/www/api/send-devis",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "80",
+					"path": [
+						"backend",
+						"www",
+						"api",
+						"send-devis"
+					]
+				},
+				"description": "Envoie une demande de devis par email"
+			},
+			"response": [
+				{
+					"name": "Success Response",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"Jean\",\n    \"lastName\": \"Dupont\",\n    \"email\": \"jean.dupont@example.com\",\n    \"phone\": \"06 12 34 56 78\",\n    \"departureCity\": \"Paris 15ème\",\n    \"arrivalCity\": \"Lyon 2ème\",\n    \"movingDate\": \"2025-12-15\",\n    \"floor\": \"3ème étage\",\n    \"needsLift\": true,\n    \"message\": \"Besoin d'un devis pour un appartement T3 environ 60m²\",\n    \"recaptchaResponse\": \"03AGdBq27test_token_example\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:80/backend/www/api/send-devis",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "80",
+							"path": [
+								"backend",
+								"www",
+								"api",
+								"send-devis"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"message\": \"Email sent successfully\"\n}"
+				},
+				{
+					"name": "Missing Required Fields",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"Jean\",\n    \"email\": \"jean.dupont@example.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:80/backend/www/api/send-devis",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "80",
+							"path": [
+								"backend",
+								"www",
+								"api",
+								"send-devis"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": false,\n    \"message\": \"Required fields missing\"\n}"
+				},
+				{
+					"name": "Invalid Email",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"Jean\",\n    \"lastName\": \"Dupont\",\n    \"email\": \"invalid-email\",\n    \"phone\": \"06 12 34 56 78\",\n    \"departureCity\": \"Paris\",\n    \"arrivalCity\": \"Lyon\",\n    \"movingDate\": \"2025-12-15\",\n    \"floor\": \"3ème\",\n    \"needsLift\": false,\n    \"message\": \"Test\",\n    \"recaptchaResponse\": \"test\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:80/backend/www/api/send-devis",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "80",
+							"path": [
+								"backend",
+								"www",
+								"api",
+								"send-devis"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": false,\n    \"message\": \"Invalid email address\"\n}"
+				},
+				{
+					"name": "reCAPTCHA Failed",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"Jean\",\n    \"lastName\": \"Dupont\",\n    \"email\": \"jean.dupont@example.com\",\n    \"phone\": \"06 12 34 56 78\",\n    \"departureCity\": \"Paris\",\n    \"arrivalCity\": \"Lyon\",\n    \"movingDate\": \"2025-12-15\",\n    \"floor\": \"3ème\",\n    \"needsLift\": false,\n    \"message\": \"Test\",\n    \"recaptchaResponse\": \"invalid_token\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:80/backend/www/api/send-devis",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "80",
+							"path": [
+								"backend",
+								"www",
+								"api",
+								"send-devis"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": false,\n    \"message\": \"reCAPTCHA validation failed\"\n}"
+				},
+				{
+					"name": "Server Error",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"Jean\",\n    \"lastName\": \"Dupont\",\n    \"email\": \"jean.dupont@example.com\",\n    \"phone\": \"06 12 34 56 78\",\n    \"departureCity\": \"Paris\",\n    \"arrivalCity\": \"Lyon\",\n    \"movingDate\": \"2025-12-15\",\n    \"floor\": \"3ème\",\n    \"needsLift\": false,\n    \"message\": \"Test\",\n    \"recaptchaResponse\": \"test\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:80/backend/www/api/send-devis",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "80",
+							"path": [
+								"backend",
+								"www",
+								"api",
+								"send-devis"
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": false,\n    \"message\": \"SMTP connection error\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Health Check",
+			"request": {
+				"method": "OPTIONS",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:80/backend/www/api/send-devis",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "80",
+					"path": [
+						"backend",
+						"www",
+						"api",
+						"send-devis"
+					]
+				},
+				"description": "Vérification CORS et disponibilité de l'API"
+			},
+			"response": [
+				{
+					"name": "CORS Preflight Success",
+					"originalRequest": {
+						"method": "OPTIONS",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:80/backend/www/api/send-devis",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "80",
+							"path": [
+								"backend",
+								"www",
+								"api",
+								"send-devis"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "POST, OPTIONS"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Content-Type"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		}
+	]
+}

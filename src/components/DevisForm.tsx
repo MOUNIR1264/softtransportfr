@@ -89,7 +89,7 @@ const DevisForm = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("/backend/www/send-devis.php", {
+      const response = await fetch("/api/send-devis.php", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
