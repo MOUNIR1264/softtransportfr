@@ -132,7 +132,7 @@ $emailBody = "<!DOCTYPE html>
 </body>
 </html>";
 
-require_once '../smtp-mailer.php';
+require_once 'smtp-mailer.php';
 
 $result = sendEmailViaSMTP(
     $to,
