@@ -5,7 +5,7 @@ const services = [
   {
     icon: Home,
     title: "Déménagement Particulier",
-    description: "Service complet de déménagement pour appartements et maisons. Emballage, transport sécurisé et déballage avec soin.",
+    description: "Service complet de déménagement résidentiel pour appartements, maisons et studios à Paris et Île-de-France. Notre équipe professionnelle assure l'emballage soigné de vos biens, le transport sécurisé avec véhicules adaptés, le déballage et l'installation dans votre nouveau logement. Protection optimale de vos meubles et objets fragiles garantie.",
     keywords: "déménagement particulier, service complet déménagement"
   },
   {
