@@ -4,12 +4,21 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Textarea } from "@/components/ui/textarea";
 import { Mail, Loader2 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useToast } from "@/hooks/use-toast";
+
+declare global {
+  interface Window {
+    grecaptcha: any;
+    onRecaptchaLoad: () => void;
+  }
+}
 
 const DevisForm = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [recaptchaLoaded, setRecaptchaLoaded] = useState(false);
+  const recaptchaRef = useRef<number | null>(null);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -23,6 +32,29 @@ const DevisForm = () => {
     message: "",
   });
 
+  useEffect(() => {
+    window.onRecaptchaLoad = () => {
+      setRecaptchaLoaded(true);
+      if (window.grecaptcha && document.getElementById('recaptcha-container')) {
+        recaptchaRef.current = window.grecaptcha.render('recaptcha-container', {
+          sitekey: '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI',
+        });
+      }
+    };
+
+    if (window.grecaptcha && window.grecaptcha.render) {
+      window.onRecaptchaLoad();
+    }
+
+    return () => {
+      if (recaptchaRef.current !== null && window.grecaptcha) {
+        try {
+          window.grecaptcha.reset(recaptchaRef.current);
+        } catch (e) {}
+      }
+    };
+  }, []);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
@@ -35,7 +67,16 @@ const DevisForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    const recaptchaResponse = (window as any).grecaptcha?.getResponse();
+    if (!window.grecaptcha || recaptchaRef.current === null) {
+      toast({
+        title: "Erreur",
+        description: "Le système de sécurité n'est pas encore chargé. Veuillez patienter.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    const recaptchaResponse = window.grecaptcha.getResponse(recaptchaRef.current);
     if (!recaptchaResponse) {
       toast({
         title: "Erreur",
@@ -78,7 +119,9 @@ const DevisForm = () => {
           needsLift: false,
           message: "",
         });
-        (window as any).grecaptcha?.reset();
+        if (recaptchaRef.current !== null) {
+          window.grecaptcha.reset(recaptchaRef.current);
+        }
       } else {
         throw new Error(result.message || "Erreur lors de l'envoi");
       }
@@ -243,7 +286,7 @@ const DevisForm = () => {
             </div>
 
             <div className="flex justify-center py-4">
-              <div className="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>
+              <div id="recaptcha-container"></div>
             </div>
 
             <Button 
