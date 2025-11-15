@@ -1,0 +1,4 @@
+project_id = "hsocycfnptysrtnupvrf"
+
+[functions.send-devis-email]
+verify_jwt = false
