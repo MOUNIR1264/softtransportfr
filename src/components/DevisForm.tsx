@@ -33,24 +33,29 @@ const DevisForm = () => {
   });
 
   useEffect(() => {
-    window.onRecaptchaLoad = () => {
-      setRecaptchaLoaded(true);
-      if (window.grecaptcha && document.getElementById('recaptcha-container')) {
-        recaptchaRef.current = window.grecaptcha.render('recaptcha-container', {
-          sitekey: '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI',
+    const loadRecaptcha = () => {
+      if (window.grecaptcha && window.grecaptcha.ready) {
+        window.grecaptcha.ready(() => {
+          setRecaptchaLoaded(true);
         });
       }
     };
 
-    if (window.grecaptcha && window.grecaptcha.render) {
-      window.onRecaptchaLoad();
+    if (window.grecaptcha) {
+      loadRecaptcha();
+    } else {
+      const script = document.createElement('script');
+      script.src = 'https://www.google.com/recaptcha/api.js?render=6LdvxA0sAAAAACpeP9EJQUyNmqJjCR9w_muTZpZ6';
+      script.async = true;
+      script.defer = true;
+      script.onload = loadRecaptcha;
+      document.head.appendChild(script);
     }
 
     return () => {
-      if (recaptchaRef.current !== null && window.grecaptcha) {
-        try {
-          window.grecaptcha.reset(recaptchaRef.current);
-        } catch (e) {}
+      const badge = document.querySelector('.grecaptcha-badge');
+      if (badge) {
+        badge.remove();
       }
     };
   }, []);
@@ -67,7 +72,7 @@ const DevisForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!window.grecaptcha || recaptchaRef.current === null) {
+    if (!window.grecaptcha || !recaptchaLoaded) {
       toast({
         title: "Erreur",
         description: "Le système de sécurité n'est pas encore chargé. Veuillez patienter.",
@@ -76,19 +81,11 @@ const DevisForm = () => {
       return;
     }
 
-    const recaptchaResponse = window.grecaptcha.getResponse(recaptchaRef.current);
-    if (!recaptchaResponse) {
-      toast({
-        title: "Erreur",
-        description: "Veuillez cocher la case 'Je ne suis pas un robot'",
-        variant: "destructive",
-      });
-      return;
-    }
-
     setIsSubmitting(true);
 
     try {
+      const recaptchaResponse = await window.grecaptcha.execute('6LdvxA0sAAAAACpeP9EJQUyNmqJjCR9w_muTZpZ6', { action: 'submit_devis' });
+
       const response = await fetch("/api/send-devis.php", {
         method: "POST",
         headers: {
@@ -119,9 +116,6 @@ const DevisForm = () => {
           needsLift: false,
           message: "",
         });
-        if (recaptchaRef.current !== null) {
-          window.grecaptcha.reset(recaptchaRef.current);
-        }
       } else {
         throw new Error(result.message || "Erreur lors de l'envoi");
       }
@@ -134,9 +128,7 @@ const DevisForm = () => {
     } finally {
       setIsSubmitting(false);
     }
-  };
-
-  return (
+  };  return (
     <section id="devis" className="py-20 bg-muted/30">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
@@ -283,10 +275,6 @@ const DevisForm = () => {
                 rows={5}
                 placeholder="Informations complémentaires sur votre déménagement..."
               />
-            </div>
-
-            <div className="flex justify-center py-4">
-              <div id="recaptcha-container"></div>
             </div>
 
             <Button 

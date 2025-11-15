@@ -25,14 +25,14 @@ if (!$data) {
 }
 
 $recaptchaResponse = $data['recaptchaResponse'] ?? '';
-$recaptchaSecret = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe';
+$recaptchaSecret = '6LdvxA0sAAAAAJO7d9L5NF2lpbIk8TnBfPJPa9oT';
 
 $recaptchaVerify = file_get_contents(
     'https://www.google.com/recaptcha/api/siteverify?secret=' . $recaptchaSecret . '&response=' . $recaptchaResponse
 );
 $recaptchaResult = json_decode($recaptchaVerify);
 
-if (!$recaptchaResult->success) {
+if (!$recaptchaResult->success || $recaptchaResult->score < 0.5) {
     http_response_code(400);
     echo json_encode(['success' => false, 'message' => 'reCAPTCHA validation failed']);
     exit();
