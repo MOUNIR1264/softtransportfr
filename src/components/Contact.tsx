@@ -66,16 +66,12 @@ const Contact = () => {
               
               <div className="space-y-4">
                 <div className="flex justify-between items-center pb-3 border-b border-primary-foreground/20">
-                  <span className="font-medium">Lundi - Vendredi</span>
-                  <span>8h00 - 19h00</span>
-                </div>
-                <div className="flex justify-between items-center pb-3 border-b border-primary-foreground/20">
-                  <span className="font-medium">Samedi</span>
-                  <span>9h00 - 17h00</span>
+                  <span className="font-medium">Lundi - Samedi</span>
+                  <span>7h00 - 19h00</span>
                 </div>
                 <div className="flex justify-between items-center pb-3 border-b border-primary-foreground/20">
                   <span className="font-medium">Dimanche</span>
-                  <span>Sur rendez-vous</span>
+                  <span>9h00 - 19h00</span>
                 </div>
               </div>
               
